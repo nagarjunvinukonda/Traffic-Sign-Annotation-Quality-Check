@@ -39,8 +39,8 @@ The Phase 3 reflection (included below) covers:
 Clone the repository:
 
 ```sh
-git clone <repo-url>
-cd <repo-dir>
+git clone https://github.com/nagarjunvinukonda/Traffic-Sign-Annotation-Quality-Check.git
+cd Traffic-Sign-Annotation-Quality-Check
 ```
 
 Install Python and pip along with it:
@@ -185,6 +185,24 @@ In our initial Phase 2 & 3 work I have covered core geometric and color–shape 
 - **Connected-Component Analysis:** Within each crop, convert to binary via edge detection or color thresholds; count distinct connected components (e.g. multiple sign shapes). If >1, flag “GroupedSigns.”  
 - **Contour/Hough-Shape Clustering:** Detect separate circular/rectangular contours—if more than one contour of the correct sign shape exists, it indicates multiple signs.  
 - **IoU Clustering:** If an annotation’s box significantly overlaps two or more other sign centroids (via precomputed sign-centroid map), treat as a grouped label.
+
+---
+## Phase 3 Reflection & Roadmap
+
+1. **Checks Completed:**  
+   - Bounds, MinSize, AspectRatio, WholeImage, AtLeastOneTrafficControl, TrafficLightBackground, OverlapDuplicates.  
+2. **Key Gaps:**  
+   - Free-standing vs. painted  
+   - Commercial/event sign exclusion  
+   - Individual vs. grouped annotation  
+3. **Next-gen Enhancements:**  
+   - **Spec-Driven ML Modules:** Pole-vs. wall classifier, sign vs. advert CNN  
+   - **Dynamic Thresholds:** As described above, auto-tuned cutoffs  
+   - **Real-Time Feedback:** Hook into Scale’s Audit API for in-tool warnings  
+   - **Dashboard & Analytics:** Visualize error rates by label, by annotator, over time  
+   - **Scalability:** JSON Lines task streaming, multiprocessing, Parquet output  
+
+With these future checks and automated calibration, our framework would cover the full annotation spec, dramatically reduce human review load, and scale seamlessly from 8 tasks to 250 k+ images.
 
 ---
 
